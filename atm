@@ -1,0 +1,102 @@
+class ATM:
+  def __init__(self):
+      self.saldo = ()
+      self.transaksi = []
+
+  def cek_saldo(self, saldo):
+      self.saldo = saldo
+      print("Saldo anda anda sebesar Rp.", self.saldo)
+
+  def simpan_uang(self):
+      tambah_saldo = int(input("Masukkan jumlah uang yang ingin disimpan: "))
+      self.saldo = self.saldo + tambah_saldo
+      self.transaksi.append(tambah_saldo)
+      print("Uang berhasil disimpan. Saldo sekarang: Rp.",self.saldo)
+  def sesama_bank(self):
+    transfer = int(input("Masukkan jumlah uang yang ingin ditransfer: "))
+    self.saldo = self.saldo - transfer
+    self.transaksi.append(transfer)
+    print("Transfer selesai. Saldo sekarang: Rp.",self.saldo)
+  def beda_bank(self):
+    tf = int(input("Masukkan jumlah uang yang ingin ditransfer: "))
+    admin = 5000
+    self.saldo = tf + admin
+    self.transaksi.append(tf)
+    print("transfer ke beda Bank akan menambah biaya admin sebesar Rp.", admin , "Saldo transfer: Rp.",self.saldo)
+  def pembayaran(self):
+      print("Pilih jenis pembayaran:")
+      print("1. Transfer")
+      print("2. Top Up")
+      pilih = input("Masukkan pilihan (1 atau 2): ")
+      if pilih == '1':
+          print("Pilih jenis transfer:")
+          print("1. Sesama Bank")
+          print("2. Beda Bank")
+          milih = input("Masukkan pilihan (1 atau 2): ")
+          if milih == '1':
+            atm.sesama_bank()
+          elif milih == '2':
+            atm.beda_bank()
+          else:
+            print("Pilihan tidak valid!!")
+      elif pilih == '2':
+          top_up = int(input("Masukkan jumlah uang yang ingin ditop up: "))
+          self.saldo = self.saldo - top_up
+          self.transaksi.append(top_up)
+          print("Top up selesai. Saldo sekarang: Rp.",self.saldo)
+      else:
+          print("Pilihan tidak valid!!")
+  def cek_mutasi(self,transaksi):
+      print("History Transaksi:")
+      for transaksi in self.transaksi:
+        print(transaksi)
+  def keluar(self):
+      print("Terima kasih telah menggunakan ATM kami")
+  def bunga(self):
+      if self.saldo > 1000000:
+        bunga = 0.5%self.saldo
+        saldo_total = self.saldo + bunga
+        self.transaksi.append(bunga)
+        print("saldo anda melebihi 1.000.000, maka anda mendapatkan bunga sebesar",bunga)
+      else:
+        saldo_total = self.saldo
+        print("Maaf saldo anda belum melebihi 1.000.000, maka anda tidak mendapatkan bunga")
+while True:
+  print("Selamat datang di ATM")
+  p = int(input("Masukkan password: "))
+  if p == 1124:
+    print("Selamat datang di ATM")
+    print("Pilih transaksi yang anda inginkan")
+    atm = ATM()
+    saldo_awal = 5000000
+    atm.saldo = saldo_awal
+    while True:
+      print("\nMenu ATM:")
+      print("1. Cek Saldo")
+      print("2. Simpan Uang")
+      print("3. Setor Tunai")
+      print("4. Cek Mutasi")
+      print("5. Keluar")
+
+      pilihan = input("Silahkan pilih (1,2,3,4,5):")
+
+      if pilihan == '1':
+        atm.cek_saldo(saldo_awal)
+      elif pilihan == '2':
+        atm.simpan_uang()
+      elif pilihan == '3':
+        atm.pembayaran()
+      elif pilihan == '4':
+        atm.cek_mutasi(transaksi=None)
+      elif pilihan == '5':
+        atm.keluar()
+      else:
+        print("Pilihan tidak valid. Silahkan pilih 1, 2, 3, 4, atau 5.")
+  else:
+    print("Password salah. Silakan coba lagi")
+    print(input("Masukkan password: "))
+    kesempatan = 0
+    total_kesempatan = 3 
+    kesempatan += 1
+    while kesempatan > total_kesempatan:
+      print("PIN terblokir!!")
